@@ -15,7 +15,7 @@ public class JavaApplication2 {
 
     public static void main(String[] args) {
         // Aquí eliges qué ejercicio se ejecuta al correr el programa
-        ejercicio11();
+        ejercicio1();
     }
 
     // endregion
