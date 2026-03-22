@@ -1,0 +1,12 @@
+# Compilados
+*.class
+
+# NetBeans / IDE
+nbproject/private/
+build/
+dist/
+*.iml
+.idea/
+
+# VS Code / Cursor (opcional: quitar la línea si quieres versionar ajustes locales)
+.vscode/
