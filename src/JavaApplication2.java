@@ -5,17 +5,73 @@ import java.util.Scanner;
  * Colección de ejercicios de práctica en Java: entrada por teclado, condicionales,
  * switch (Java 21), bucles, arreglos y formato de texto en consola.
  * <p>
- * Cambia la llamada en {@link #main} para ejecutar otro ejercicio, por ejemplo:
- * {@code ejercicio1();}, {@code ejercicio9();}, etc.
+ * Al ejecutar el programa se muestra un menú numerado para elegir el ejercicio.
  */
 public class JavaApplication2 {
+
+    /** Una sola instancia para menú y ejercicios; varios {@code Scanner(System.in)} suelen fallar. */
+    private static final Scanner ENTRADA = new Scanner(System.in);
 
     // region Punto de entrada
     // -------------------------------------------------------------------------
 
     public static void main(String[] args) {
-        // Aquí eliges qué ejercicio se ejecuta al correr el programa
-        ejercicio1();
+        int opcion;
+        do {
+            mostrarMenu();
+            while (!ENTRADA.hasNextInt()) {
+                ENTRADA.nextLine();
+                System.out.print("Introduce un numero entero valido: ");
+            }
+            opcion = ENTRADA.nextInt();
+            ENTRADA.nextLine();
+
+            switch (opcion) {
+                case 1 -> ejercicio1();
+                case 2 -> ejercicio2();
+                case 3 -> ejercicio3();
+                case 4 -> ejercicio4();
+                case 5 -> ejercicio5();
+                case 6 -> ejercicio6();
+                case 7 -> ejercicio7();
+                case 8 -> ejercicio8();
+                case 9 -> ejercicio9();
+                case 10 -> ejercicio10();
+                case 11 -> ejercicio11();
+                case 0 -> System.out.println("¡Hasta luego!");
+                default -> System.out.println("Opción no válida. Elige un número entre 0 y 11.");
+            }
+            if (opcion != 0) {
+                System.out.println();
+                System.out.println("--- Pulsa Enter para volver al menu ---");
+                ENTRADA.nextLine();
+            }
+        } while (opcion != 0);
+    }
+
+    /**
+     * Lista numerada de ejercicios con título que describe qué hace cada uno.
+     */
+    private static void mostrarMenu() {
+        System.out.println();
+        System.out.println("==============================================================");
+        System.out.println("     MENU DE EJERCICIOS - JavaApplication2");
+        System.out.println("==============================================================");
+        System.out.println("  1 - Par o impar (numero entero)");
+        System.out.println("  2 - Mayor de tres numeros enteros");
+        System.out.println("  3 - Aprobado / desaprobado segun nota (umbral 11)");
+        System.out.println("  4 - Clasificacion de calificacion con switch (rangos)");
+        System.out.println("  5 - Es ano bisiesto?");
+        System.out.println("  6 - Imprimir del 1 al 10 con while");
+        System.out.println("  7 - Validar contrasena (bucle do-while)");
+        System.out.println("  8 - Columnas alineadas con printf");
+        System.out.println("  9 - Interseccion de dos arreglos (conjuntos)");
+        System.out.println(" 10 - Tabla de nombres y edades (StringBuilder)");
+        System.out.println(" 11 - Reporte de notas: PC1-PC3, parcial y promedio");
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("  0 - Salir");
+        System.out.println("==============================================================");
+        System.out.print("Elige una opcion: ");
     }
 
     // endregion
@@ -26,7 +82,7 @@ public class JavaApplication2 {
      * Pide un entero y dice si es par o impar (divisible entre 2 o no).
      */
     public static void ejercicio1() {
-        Scanner lector = new Scanner(System.in);
+        Scanner lector = ENTRADA;
         System.out.println("Ingrese un numero entero");
         int numero = lector.nextInt();
 
@@ -41,7 +97,7 @@ public class JavaApplication2 {
      * Lee tres números y muestra cuál es el mayor (comparaciones anidadas).
      */
     public static void ejercicio2() {
-        Scanner lector = new Scanner(System.in);
+        Scanner lector = ENTRADA;
 
         System.out.println("Ingrese 3 numeros enteros");
         System.out.println("Ingrese el primer numero");
@@ -66,7 +122,7 @@ public class JavaApplication2 {
      * Nota de examen: si es 11 o más aprueba; si no, desaprueba (umbral simple).
      */
     public static void ejercicio3() {
-        Scanner lector = new Scanner(System.in);
+        Scanner lector = ENTRADA;
         System.out.println("Ingrese la nota de su examen:");
         int nota = lector.nextInt();
 
@@ -86,7 +142,7 @@ public class JavaApplication2 {
      * patrones {@code Integer c when (...)} (característica de Java reciente).
      */
     public static void ejercicio4() {
-        Scanner lector = new Scanner(System.in);
+        Scanner lector = ENTRADA;
         System.out.println("Ingrese la nota del alumno");
         Integer calificacion = lector.nextInt();
 
@@ -113,7 +169,7 @@ public class JavaApplication2 {
      * salvo que sea divisible entre 400.
      */
     public static void ejercicio5() {
-        Scanner lector = new Scanner(System.in);
+        Scanner lector = ENTRADA;
         System.out.println("Ingrese el año");
         Integer año = lector.nextInt();
 
@@ -148,7 +204,7 @@ public class JavaApplication2 {
      * Pide contraseña hasta que coincida con la guardada ({@code do-while}).
      */
     public static void ejercicio7() {
-        Scanner lector = new Scanner(System.in);
+        Scanner lector = ENTRADA;
         String contraseña = "java123";
         String intentos;
         do {
@@ -190,7 +246,7 @@ public class JavaApplication2 {
      * que aparecen en ambos), sin repetir por elemento de {@code a} gracias al {@code break}.
      */
     public static void ejercicio9() {
-        Scanner lector = new Scanner(System.in);
+        Scanner lector = ENTRADA;
         System.out.println("Ingrese la cantidad de  elementos del primero conjunto");
         int n = lector.nextInt();
 
